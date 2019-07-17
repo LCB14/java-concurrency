@@ -22,7 +22,7 @@ public class TicketWindow extends Thread {
 
         while (index <= MAX) {
 
-            //静态变量不存在并发的问题？？至少从目前的程序看没有！三个线程运行结束后index的值为5000
+            //静态变量不存在并发的问题？？存在！往后的视频中作者也说了
             System.out.println("柜台：" + name + "当前的号码是:" + (index++));
         }
     }
