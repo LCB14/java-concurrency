@@ -7,6 +7,30 @@ package com.wangwenjun.concurrency.chapter5;
  ***************************************/
 public class ThreadJoin2 {
     public static void main(String[] args) {
+
+        /*Thread t1 = new Thread(() -> {
+            try {
+                System.out.println("t1 is running");
+                for (int i = 0; i < 1000; i++) {
+                    Thread.sleep(10);
+                    System.out.println(Thread.currentThread().getName() + "->" +i);
+                }
+                System.out.println("t1 is done");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        t1.start();
+        //20毫秒后main线程和t1线程交替输出
+        t1.join(20);
+
+        Optional.of("All of tasks finish done.").ifPresent(System.out::println);
+        IntStream.range(1, 1000)
+                .forEach(i -> System.out.println(Thread.currentThread().getName() + "->" + i));*/
+
+
+
         /*Thread t1 = new Thread(() -> {
             try {
                 System.out.println("t1 is running");
