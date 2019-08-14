@@ -3,9 +3,7 @@ package com.wangwenjun.concurrency.chapter9;
 import java.util.stream.Stream;
 
 /***************************************
- * @author:Alex Wang
- * @Date:2017/2/19 QQ:532500648
- * QQ交流群:286081824
+ * 使用notifyAll与while循环避免假死的问题发生
  ***************************************/
 public class ProduceConsumerVersion3 {
 
@@ -17,6 +15,10 @@ public class ProduceConsumerVersion3 {
 
     public void produce() {
         synchronized (LOCK) {
+            // 如果为if的话，则有可能产生数据丢失生（上一个生产者生产的别下一个生产者生产的给覆盖了）
+            // t1时刻，p1进行了生产i1，正常结束
+            // t2时刻，p2和p3判断if条件成立，进而进行wait
+            // t3时刻，c1对i1进行消费，并调用了notifyAll方法，p2和p3同时被唤醒，p2进行生产i2，紧接着p3进行生产i3，从而将i2的值进行覆盖
             while (isProduced) {
                 try {
                     LOCK.wait();
