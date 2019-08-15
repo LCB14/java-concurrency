@@ -31,6 +31,9 @@ public class LockTest0 {
                             }
                         }, name).start()
                 );
+        
+        Thread.sleep(5_000);
+        booleanLock.unlock();
     }
 
     private static void work() throws InterruptedException {
