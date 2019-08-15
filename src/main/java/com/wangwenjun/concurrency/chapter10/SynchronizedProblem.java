@@ -21,9 +21,9 @@ public class SynchronizedProblem {
         Thread t2 = new Thread() {
             @Override
             public void run() {
-//                /sdfsdfsd
+                System.out.println("11111");
                 SynchronizedProblem.run();
-                //sdfsdfsd
+                System.out.println("22222");
             }
         };
         t2.start();
