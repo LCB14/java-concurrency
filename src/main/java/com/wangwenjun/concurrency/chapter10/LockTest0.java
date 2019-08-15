@@ -4,9 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /***************************************
- * @author:Alex Wang
- * @Date:2017/2/22 QQ:532500648
- * QQ交流群:286081824
+ * 自定义锁
  ***************************************/
 public class LockTest0 {
     public static void main(String[] args) throws InterruptedException {
