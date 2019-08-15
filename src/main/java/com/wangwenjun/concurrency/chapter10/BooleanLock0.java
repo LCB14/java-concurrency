@@ -33,6 +33,7 @@ public class BooleanLock0 implements Lock {
 
         blockedThreadCollection.remove(Thread.currentThread());
         this.initValue = true;
+        currentThread = Thread.currentThread();
     }
 
     @Override
@@ -42,10 +43,13 @@ public class BooleanLock0 implements Lock {
 
     @Override
     public synchronized void unlock() {
-        initValue = false;
-        Optional.of(Thread.currentThread().getName() + " release the lock monitor.")
-                    .ifPresent(System.out::println);
-        this.notifyAll();
+        if(currentThread == Thread.currentThread()){
+            initValue = false;
+            Optional.of(Thread.currentThread().getName() + " release the lock monitor.")
+                        .ifPresent(System.out::println);
+            this.notifyAll();
+        }
+    
     }
 
     @Override

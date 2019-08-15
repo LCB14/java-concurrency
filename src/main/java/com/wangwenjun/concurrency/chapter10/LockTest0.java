@@ -29,10 +29,6 @@ public class LockTest0 {
                             }
                         }, name).start()
                 );
-        
-        //很显然加上下面的两行代码后程序会出问题
-        // Thread.sleep(5_000);
-        // booleanLock.unlock();
     }
 
     private static void work() throws InterruptedException {
