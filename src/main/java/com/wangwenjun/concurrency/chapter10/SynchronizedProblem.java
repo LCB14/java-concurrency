@@ -1,9 +1,7 @@
 package com.wangwenjun.concurrency.chapter10;
 
 /***************************************
- * @author:Alex Wang
- * @Date:2017/2/22 QQ:532500648
- * QQ交流群:286081824
+ * interrupt一个处于block状态的线程时，这个线程不会继续执行未完成的任务！
  ***************************************/
 public class SynchronizedProblem {
 
@@ -23,6 +21,7 @@ public class SynchronizedProblem {
             public void run() {
                 System.out.println("11111");
                 SynchronizedProblem.run();
+                //虽然t2被打断了，但是22222是不会输出的！
                 System.out.println("22222");
             }
         };
