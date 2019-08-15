@@ -3,9 +3,9 @@ package com.wangwenjun.concurrency.chapter9;
 import java.util.*;
 
 /***************************************
- * @author:Alex Wang
- * @Date:2017/2/20 QQ:532500648
- * QQ交流群:286081824
+ * 同时启动10个线程，其中的6个线程先开始执行running，其余的线程wait；
+ * 每当running线程其中的一个执行完，处于wait状态线程中的一个就会被唤醒进行执行；
+ * 依次循环，直到所有的线程执行完毕
  ***************************************/
 public class CaptureService {
 
