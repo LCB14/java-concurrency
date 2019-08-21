@@ -6,9 +6,10 @@ import java.util.Collections;
 import java.util.Optional;
 
 /***************************************
- * @author:Alex Wang
- * @Date:2017/2/22 QQ:532500648
- * QQ交流群:286081824
+ * 这个程序是为了解决这样的一种情况：
+ * 使用原生的java锁，比如说synchronized锁，当一个线程调用了wait方法从而进行block主后，如果其他的线程一直没有释放锁的话，这个线程就一直处于block的状态。
+ * 这个程序实现了当一个线程进行wait的时候指定了一个等待的时间，若是超过了这个等待的时间后这个线程还没有获取到锁（initValue为false）的话，就直接抛出异常结束了。
+ * 了解这个程序所要表达的思想即可。
  ***************************************/
 public class BooleanLock implements Lock {
 
