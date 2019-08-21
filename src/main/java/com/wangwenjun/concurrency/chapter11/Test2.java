@@ -11,6 +11,7 @@ import java.util.Optional;
 public class Test2 {
 
     public void test() {
+        // 输出调用test方法的方法调用栈
         Arrays.asList(Thread.currentThread().getStackTrace()).stream()
                 .filter(e -> !e.isNativeMethod())
                 .forEach(e -> Optional.of(e.getClassName() + ":" + e.getMethodName() + ":" + e.getLineNumber())
