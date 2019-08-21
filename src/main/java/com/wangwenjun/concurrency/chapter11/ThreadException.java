@@ -25,10 +25,14 @@ public class ThreadException {
         });
         t.start();
 
-//        t.setUncaughtExceptionHandler((thread, e) -> {
-//            System.out.println(e);
-//            System.out.println(thread);
-//        });
-//        t.start();
+        // 在通常的情况例如上面的线程当抛出异常的时候，JVM只能将异常输出到控制台或者日志文件中，而如果我们没有看着这些异常信息的话，
+        // 其实我们此时还不知道其实线程已经发生异常了。
+        // 使用setUncaughtExceptionHandler可以捕获到当线程出现问题时的异常信息，捕获到异常信息后就可以采取一些措施来通知相关的人员了，例如
+        // 发送短息等手段。下面为了演示，还是照样输出了
+        t.setUncaughtExceptionHandler((thread, e) -> {
+            System.out.println(e);
+            System.out.println(thread);
+        });
+        t.start();
     }
 }
