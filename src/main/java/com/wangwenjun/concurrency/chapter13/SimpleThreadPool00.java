@@ -1,7 +1,6 @@
 package com.wangwenjun.concurrency.chapter13;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -77,7 +76,7 @@ public class SimpleThreadPool00 extends Thread {
             OUTER:
             while (this.taskState != TaskState.DEAD) {
                 Runnable runnable;
-                synchronized (TASK_QUEUE){
+                synchronized (TASK_QUEUE) {
                     while (TASK_QUEUE.isEmpty()) {
                         try {
                             taskState = taskState.BLOCK;
@@ -91,7 +90,7 @@ public class SimpleThreadPool00 extends Thread {
 
                     runnable = TASK_QUEUE.removeFirst();
                 }
-                if(runnable != null) {
+                if (runnable != null) {
                     taskState = TaskState.RUNNING;
                     runnable.run();
                     taskState = TaskState.FREE;
