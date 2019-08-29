@@ -37,6 +37,8 @@ public class SimpleThreadPool00 extends Thread {
       throw new DiscardException("Discard this task");
     };
 
+    public static boolean destroy = false;
+
     public SimpleThreadPool00() {
         this(DEFAULT_SIZE, DEFAULT_TASK_QUEUE_SIZE, DEFAULT_DISCARD_POLICY);
     }
@@ -56,6 +58,10 @@ public class SimpleThreadPool00 extends Thread {
     }
 
     public void submit(Runnable runnable) {
+        if (destroy) {
+            throw new IllegalStateException("thread pool is shutdown, not allow to submit task to it ");
+        }
+
         synchronized (TASK_QUEUE) {
             if (TASK_QUEUE.size() >= queueSize) {
                 discardPolicy.discard();
@@ -69,6 +75,43 @@ public class SimpleThreadPool00 extends Thread {
         WorkTask task = new WorkTask(GROUP, THREAD_PREFIX + seq++);
         task.start();
         THREAD_QUEUE.add(task);
+    }
+
+    // 关闭掉线程池，即，让线程池中的线程均运行完；若没有关闭线程池的话，就算任务队列TASK_QUEUE中已经
+    // 没有任务了，程序还是处于运行的状态
+    public void shutDown() throws InterruptedException {
+        while (!TASK_QUEUE.isEmpty()) {
+            Thread.sleep(50);
+        }
+
+        int initVal = THREAD_QUEUE.size();
+        while (initVal > 0) {
+            for (WorkTask task : THREAD_QUEUE) {
+                if (task.getTaskState() == TaskState.BLOCK) {
+                    task.interrupt();
+                    task.close();
+                    initVal--;
+                }else {
+                    Thread.sleep(10);
+                }
+            }
+        }
+
+        this.destroy = true;
+        System.out.println("thread pool is shutdown");
+
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getQueueSize() {
+        return queueSize;
+    }
+
+    public static boolean getDestroy() {
+        return destroy;
     }
 
     private enum TaskState {
@@ -110,7 +153,7 @@ public class SimpleThreadPool00 extends Thread {
                             taskState = taskState.BLOCK;
                             TASK_QUEUE.wait();
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+//                            e.printStackTrace();
                             break OUTER;
                         }
 
@@ -133,9 +176,11 @@ public class SimpleThreadPool00 extends Thread {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        SimpleThreadPool00 simpleThreadPool = new SimpleThreadPool00(6, 10, SimpleThreadPool00.DEFAULT_DISCARD_POLICY);
+//        SimpleThreadPool00 simpleThreadPool = new SimpleThreadPool00(6, 10, SimpleThreadPool00.DEFAULT_DISCARD_POLICY);
+
+        SimpleThreadPool00 simpleThreadPool = new SimpleThreadPool00();
 
         IntStream.rangeClosed(0, 40)
                 .forEach(i -> simpleThreadPool.submit(
@@ -149,6 +194,11 @@ public class SimpleThreadPool00 extends Thread {
                             System.out.println("The runnable " + i + " be serviced by " + Thread.currentThread().getName() + " FINISHED");
                         }
                 ));
+
+
+        Thread.sleep(10_000);
+        simpleThreadPool.shutDown();
+        simpleThreadPool.submit(() -> System.out.println("=================="));
 
     }
 }
