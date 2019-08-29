@@ -15,7 +15,11 @@ public class SimpleThreadPool00 extends Thread {
 
     private final int size;
 
+    private final int queueSize;
+
     private final static int DEFAULT_SIZE = 10;
+
+    private final static int DEFAULT_TASK_QUEUE_SIZE = 2000;
 
     private static volatile int seq = 0;
 
@@ -27,12 +31,20 @@ public class SimpleThreadPool00 extends Thread {
 
     private final static List<WorkTask> THREAD_QUEUE = new ArrayList<>();
 
+    public final DiscardPolicy discardPolicy;
+
+    public final static DiscardPolicy DEFAULT_DISCARD_POLICY = () -> {
+      throw new DiscardException("Discard this task");
+    };
+
     public SimpleThreadPool00() {
-        this(DEFAULT_SIZE);
+        this(DEFAULT_SIZE, DEFAULT_TASK_QUEUE_SIZE, DEFAULT_DISCARD_POLICY);
     }
 
-    public SimpleThreadPool00(int size) {
+    public SimpleThreadPool00(int size, int queueSize, DiscardPolicy discardPolicy) {
         this.size = size;
+        this.queueSize = queueSize;
+        this.discardPolicy = discardPolicy;
         init();
     }
 
@@ -45,6 +57,9 @@ public class SimpleThreadPool00 extends Thread {
 
     public void submit(Runnable runnable) {
         synchronized (TASK_QUEUE) {
+            if (TASK_QUEUE.size() >= queueSize) {
+                discardPolicy.discard();
+            }
             TASK_QUEUE.addLast(runnable);
             TASK_QUEUE.notifyAll();
         }
@@ -58,6 +73,18 @@ public class SimpleThreadPool00 extends Thread {
 
     private enum TaskState {
         FREE, RUNNING, BLOCK, DEAD
+    }
+
+    public static class DiscardException extends RuntimeException {
+        public DiscardException(String message) {
+            super(message);
+        }
+    }
+
+    public interface DiscardPolicy {
+
+        void discard() throws DiscardException;
+
     }
 
     private static class WorkTask extends Thread {
@@ -108,7 +135,7 @@ public class SimpleThreadPool00 extends Thread {
 
     public static void main(String[] args) {
 
-        SimpleThreadPool00 simpleThreadPool = new SimpleThreadPool00();
+        SimpleThreadPool00 simpleThreadPool = new SimpleThreadPool00(6, 10, SimpleThreadPool00.DEFAULT_DISCARD_POLICY);
 
         IntStream.rangeClosed(0, 40)
                 .forEach(i -> simpleThreadPool.submit(
