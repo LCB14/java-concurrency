@@ -1,6 +1,7 @@
 package com.wangwenjun.concurrency.chapter13;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -96,6 +97,35 @@ public class SimpleThreadPool01 extends Thread {
                     }
                     System.out.println("The pool incremented.");
                     size = active;
+                }else if(TASK_QUEUE.size() > max && size < max) {
+                    for (int i = size; i < max; i++) {
+                        createWorkTask();
+                    }
+                    System.out.println("The pool incremented to max.");
+                    size = max;
+                }
+
+                if(TASK_QUEUE.isEmpty() && size > active) {
+                    System.out.println("=============Reduce===============");
+                    // 之所以用TASK_QUEUE这个锁，是为了实现这样的一个效果：虽然目前任务队列为空了但是，保不准在下一秒又有大量的任务加入到任务队列中
+                    // 虽然下一秒有可能有大量的任务加入到队列中，但是当任务队列为空的这一瞬间，需要对线程池中的工作线程进行缩减；当添加到任务队列中的
+                    // 任务又达到临界值后，线程池中的线程又开始增加
+                    synchronized (TASK_QUEUE) {
+                        int releaseSize = size - active;
+
+                        for (Iterator<WorkTask> iterator = THREAD_QUEUE.iterator(); iterator.hasNext();) {
+                            if (releaseSize <=0) {
+                                break;
+                            }
+                            WorkTask task = iterator.next();
+                            task.close();
+                            task.interrupt();
+                            iterator.remove();
+                            releaseSize--;
+                        }
+
+                        size = active;
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
