@@ -49,7 +49,7 @@ public class SimpleThreadPool01 extends Thread {
         this(4, 8, 12, DEFAULT_TASK_QUEUE_SIZE, DEFAULT_DISCARD_POLICY);
     }
 
-    public SimpleThreadPool01(int min, int max, int active, int queueSize, DiscardPolicy discardPolicy) {
+    public SimpleThreadPool01(int min, int active, int max, int queueSize, DiscardPolicy discardPolicy) {
         this.min = min;
         this.max = max;
         this.active = active;
@@ -89,7 +89,14 @@ public class SimpleThreadPool01 extends Thread {
                     this.min, this.max, this.active, this.size, TASK_QUEUE.size());
 
             try {
-                Thread.sleep(5_000);
+                Thread.sleep(1_000);
+                if(TASK_QUEUE.size() > active && size < active) {
+                    for (int i = size; i < active; i++) {
+                        createWorkTask();
+                    }
+                    System.out.println("The pool incremented.");
+                    size = active;
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
