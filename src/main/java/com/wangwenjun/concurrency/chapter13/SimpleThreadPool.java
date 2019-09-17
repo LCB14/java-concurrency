@@ -81,7 +81,7 @@ public class SimpleThreadPool extends Thread {
             System.out.printf("Pool#Min:%d,Active:%d,Max:%d,Current:%d,QueueSize:%d\n",
                     this.min, this.active, this.max, this.size, TASK_QUEUE.size());
             try {
-                Thread.sleep(5_000L);
+                Thread.sleep(1_000L);
                 if (TASK_QUEUE.size() > active && size < active) {
                     for (int i = size; i < active; i++) {
                         createWorkTask();
