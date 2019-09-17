@@ -249,6 +249,12 @@ public class SimpleThreadPool01 extends Thread {
                         () -> {
                             System.out.println("The runnable " + i + " be serviced by " + Thread.currentThread().getName() + " START");
                             try {
+                                // 目前程序遗留一个问题：当缩减线程池中的线程时，如果线程池中的被缩减的线程没有wait的话，而是要缩减的线程，调用了要执行的任务
+                                // 的run方法时进行了sleep，此时调用WorkTask.interrupt方法时，在这里会抛出异常:
+                                // java.lang.InterruptedException: sleep interrupted
+                                //	at java.lang.Thread.sleep(Native Method)
+                                //	at com.wangwenjun.concurrency.chapter13.SimpleThreadPool.lambda$main$1(SimpleThreadPool.java:242)
+                                //	at com.wangwenjun.concurrency.chapter13.SimpleThreadPool$WorkerTask.run(SimpleThreadPool.java:225)
                                 Thread.sleep(1000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
