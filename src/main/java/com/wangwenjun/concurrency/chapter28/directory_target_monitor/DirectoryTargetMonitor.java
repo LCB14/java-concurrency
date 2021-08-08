@@ -1,6 +1,7 @@
 package com.wangwenjun.concurrency.chapter28.directory_target_monitor;
 
-import chapter28.EventBus;
+
+import com.wangwenjun.concurrency.chapter28.EventBus;
 
 import java.io.IOException;
 import java.nio.file.*;

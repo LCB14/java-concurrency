@@ -1,7 +1,8 @@
 package com.wangwenjun.concurrency.chapter27.general_active_object;
 
 
-import chapter19.Future;
+
+import com.wangwenjun.concurrency.chapter19.Future;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

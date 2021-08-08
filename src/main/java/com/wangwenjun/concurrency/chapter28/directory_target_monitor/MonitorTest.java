@@ -1,7 +1,7 @@
 package com.wangwenjun.concurrency.chapter28.directory_target_monitor;
 
-import chapter28.AsyncEventBus;
-import chapter28.EventBus;
+import com.wangwenjun.concurrency.chapter28.AsyncEventBus;
+import com.wangwenjun.concurrency.chapter28.EventBus;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -13,8 +13,8 @@ public class MonitorTest {
         final EventBus bus = new AsyncEventBus(executor);
         //注册
         bus.register(new FileChangeListener());
-        DirectoryTargetMonitor monitor = new DirectoryTargetMonitor(bus, "D:\\studyProject\\java-concurrency\\src\\chapter28\\derectory_target_monitor");
-        monitor.startMonitor();
+//        DirectoryTargetMonitor monitor = new DirectoryTargetMonitor(bus, "D:\\studyProject\\java-concurrency\\src\\chapter28\\derectory_target_monitor");
+//        monitor.startMonitor();
     }
 
 }

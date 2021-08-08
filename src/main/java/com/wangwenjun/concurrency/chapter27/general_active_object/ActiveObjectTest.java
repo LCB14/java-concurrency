@@ -1,6 +1,5 @@
 package com.wangwenjun.concurrency.chapter27.general_active_object;
 
-import chapter19.Future;
 
 import static java.lang.Thread.currentThread;
 

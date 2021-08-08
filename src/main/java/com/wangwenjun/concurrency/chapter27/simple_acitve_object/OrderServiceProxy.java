@@ -1,6 +1,7 @@
 package com.wangwenjun.concurrency.chapter27.simple_acitve_object;
 
-import chapter19.Future;
+
+import com.wangwenjun.concurrency.chapter19.Future;
 
 import java.util.HashMap;
 import java.util.Map;

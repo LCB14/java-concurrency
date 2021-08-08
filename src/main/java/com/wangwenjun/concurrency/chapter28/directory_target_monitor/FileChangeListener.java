@@ -1,6 +1,6 @@
 package com.wangwenjun.concurrency.chapter28.directory_target_monitor;
 
-import chapter28.Subscribe;
+import com.wangwenjun.concurrency.chapter28.Subscribe;
 
 public class FileChangeListener {
 

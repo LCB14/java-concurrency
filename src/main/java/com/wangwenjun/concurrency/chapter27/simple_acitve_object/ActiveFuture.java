@@ -1,6 +1,7 @@
 package com.wangwenjun.concurrency.chapter27.simple_acitve_object;
 
-import chapter19.FutureTask;
+
+import com.wangwenjun.concurrency.chapter19.FutureTask;
 
 public class ActiveFuture<T> extends FutureTask<T> {
 

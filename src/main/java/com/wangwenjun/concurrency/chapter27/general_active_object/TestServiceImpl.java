@@ -1,8 +1,9 @@
 package com.wangwenjun.concurrency.chapter27.general_active_object;
 
-import chapter19.Future;
-import chapter19.FutureService;
-import chapter19.Task;
+
+import com.wangwenjun.concurrency.chapter19.Future;
+import com.wangwenjun.concurrency.chapter19.FutureService;
+import com.wangwenjun.concurrency.chapter19.Task;
 
 import java.util.concurrent.TimeUnit;
 
