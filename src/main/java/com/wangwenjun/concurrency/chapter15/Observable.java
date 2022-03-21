@@ -1,7 +1,7 @@
 package com.wangwenjun.concurrency.chapter15;
 
 /**
- *观察者接口
+ * 观察者接口
  * 该接口主要是暴露给调用者使用
  */
 public interface Observable {

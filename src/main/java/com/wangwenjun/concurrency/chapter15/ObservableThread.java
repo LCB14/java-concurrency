@@ -35,24 +35,24 @@ public class ObservableThread<T> extends Thread implements Observable {
     @Override
     public final void run() {
         //在执行逻辑单元的时候分别触发相应的事件
-        this.update(Cycle.START,null,null);
+        this.update(Cycle.START, null, null);
         try {
-            this.update(Cycle.RUNNING,null,null);
-            T result=this.task.call();
-            this.update(Cycle.DONE,result,null);
-        }catch (Exception e){
-            this.update(Cycle.ERROR,null,e);
+            this.update(Cycle.RUNNING, null, null);
+            T result = this.task.call();
+            this.update(Cycle.DONE, result, null);
+        } catch (Exception e) {
+            this.update(Cycle.ERROR, null, e);
         }
     }
 
     private void update(Cycle cycle, T result, Exception e) {
-        this.cycle=cycle;
-        if(lifecycle==null){
+        this.cycle = cycle;
+        if (lifecycle == null) {
             return;
         }
 
         try {
-            switch (cycle){
+            switch (cycle) {
                 case START:
                     this.lifecycle.onStart(currentThread());
                     break;
@@ -60,14 +60,14 @@ public class ObservableThread<T> extends Thread implements Observable {
                     this.lifecycle.onRunning(currentThread());
                     break;
                 case DONE:
-                    this.lifecycle.onFinish(currentThread(),result);
+                    this.lifecycle.onFinish(currentThread(), result);
                     break;
                 case ERROR:
-                    this.lifecycle.onError(currentThread(),e);
+                    this.lifecycle.onError(currentThread(), e);
                     break;
             }
-        }catch (Exception ex){
-            if(cycle==Cycle.ERROR){
+        } catch (Exception ex) {
+            if (cycle == Cycle.ERROR) {
                 throw ex;
             }
         }

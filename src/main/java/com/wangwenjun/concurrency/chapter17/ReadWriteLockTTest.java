@@ -30,10 +30,10 @@ public class ReadWriteLockTTest {
 
         //创建10个线程进行读操作
         for (int i = 0; i < 10; i++) {
-            new Thread(()->{
-                while (true){
+            new Thread(() -> {
+                while (true) {
                     try {
-                        System.out.println(currentThread()+" read "+new String(shareData.read()));
+                        System.out.println(currentThread() + " read " + new String(shareData.read()));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

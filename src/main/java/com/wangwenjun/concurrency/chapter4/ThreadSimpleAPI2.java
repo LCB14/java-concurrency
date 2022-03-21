@@ -22,7 +22,6 @@ public class ThreadSimpleAPI2 {
                 Optional.of(Thread.currentThread().getName() + "-Index" + i).ifPresent(System.out::println);
             }
         });
-
         t2.setPriority(Thread.NORM_PRIORITY);
 
         Thread t3 = new Thread(() -> {
@@ -30,7 +29,6 @@ public class ThreadSimpleAPI2 {
                 Optional.of(Thread.currentThread().getName() + "-Index" + i).ifPresent(System.out::println);
             }
         });
-
         t3.setPriority(Thread.MIN_PRIORITY);
 
         t1.start();

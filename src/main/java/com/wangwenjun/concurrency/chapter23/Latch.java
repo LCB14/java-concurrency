@@ -18,7 +18,7 @@ public abstract class Latch {
     public abstract void await() throws InterruptedException;
 
     //可超时等待
-    public abstract void await(TimeUnit timeUnit,long time) throws InterruptedException,WaitTimeOutException;
+    public abstract void await(TimeUnit timeUnit, long time) throws InterruptedException, WaitTimeOutException;
 
     //当任务线程完成工作之后调用此方法将计数器减一
     public abstract void countDown();

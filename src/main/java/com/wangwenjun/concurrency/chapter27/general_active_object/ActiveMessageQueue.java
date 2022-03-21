@@ -10,16 +10,16 @@ import java.util.LinkedList;
  */
 public class ActiveMessageQueue {
     //用于存放提交的 MethodMessage 消息
-    private final LinkedList<ActiveMessage> messages=new LinkedList<>();
+    private final LinkedList<ActiveMessage> messages = new LinkedList<>();
 
     //在创建 ActiveMessageQueue 的同时启动 ActiveDaemonThread 线程用来进行异步的方法执行
-    public ActiveMessageQueue(){
+    public ActiveMessageQueue() {
         //启动 Worker 线程
         new ActiveDaemonThread(this).start();
     }
 
-    public void offer(ActiveMessage activeMessage){
-        synchronized (this){
+    public void offer(ActiveMessage activeMessage) {
+        synchronized (this) {
             messages.addLast(activeMessage);
             //因为只有一个线程负责 take 数据，因此没有必要使用 notifyAll();
             this.notify();
@@ -27,10 +27,10 @@ public class ActiveMessageQueue {
     }
 
     //take() 主要是被 ActiveDaemonThread 线程使用，当 message 队列为空时，ActiveDaemonThread 线程将会被挂起
-    protected ActiveMessage take(){
-        synchronized (this){
+    protected ActiveMessage take() {
+        synchronized (this) {
             //当 MethodMessage 队列中没有 Message 的时候，执行线程进入阻塞队列
-            while (messages.isEmpty()){
+            while (messages.isEmpty()) {
                 try {
                     this.wait();
                 } catch (InterruptedException e) {

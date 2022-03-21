@@ -2,6 +2,7 @@ package com.wangwenjun.concurrency.chapter19;
 
 /**
  * 回调接口，任务结束后回调通知任务发布者
+ *
  * @param <T>
  */
 @FunctionalInterface

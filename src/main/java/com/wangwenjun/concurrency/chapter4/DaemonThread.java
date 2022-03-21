@@ -10,7 +10,6 @@ public class DaemonThread {
     public static void main(String[] args) throws InterruptedException {
 
         Thread t = new Thread() {
-
             @Override
             public void run() {
                 try {
@@ -21,18 +20,19 @@ public class DaemonThread {
                     e.printStackTrace();
                 }
             }
-        }; //new
-        t.start();
+        };
+        // 必须在 start  方法之前进行设置
         t.setDaemon(true);
+        t.start();
         //runnable  ->running| ->dead| ->blocked
 
-
-        Thread.sleep(5_000);   //JDK1.7
+        // JDK1.7
+        Thread.sleep(5_000);
         System.out.println(Thread.currentThread().getName());
     }
 }
 
 /**
  * A<---------------------------------->B
- *  ->daemonThread(health check)
- * */
+ * ->daemonThread(health check)
+ */

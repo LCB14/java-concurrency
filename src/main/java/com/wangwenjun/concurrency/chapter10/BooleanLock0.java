@@ -38,18 +38,18 @@ public class BooleanLock0 implements Lock {
 
     @Override
     public synchronized void lock(long mills) throws InterruptedException, TimeOutException {
-        
+
     }
 
     @Override
     public synchronized void unlock() {
-        if(currentThread == Thread.currentThread()){
+        if (currentThread == Thread.currentThread()) {
             initValue = false;
             Optional.of(Thread.currentThread().getName() + " release the lock monitor.")
-                        .ifPresent(System.out::println);
+                    .ifPresent(System.out::println);
             this.notifyAll();
         }
-    
+
     }
 
     @Override

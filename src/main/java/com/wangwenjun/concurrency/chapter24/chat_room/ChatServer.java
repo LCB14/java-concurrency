@@ -36,16 +36,16 @@ public class ChatServer {
         threadPool = new ThreadPoolExecutor(2, 4,
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(1000));
-        this.serverSocket=new ServerSocket(port);
+        this.serverSocket = new ServerSocket(port);
         this.serverSocket.setReuseAddress(true);
-        System.out.println("Chat server is started and listen at port: "+port);
+        System.out.println("Chat server is started and listen at port: " + port);
         this.listen();
     }
 
     private void listen() throws IOException {
-        for(;;){
+        for (; ; ) {
             //accept() 是阻塞方法，当有新的连接进入时才会有返回，并且返回的是客户端的连接
-            Socket client=serverSocket.accept();
+            Socket client = serverSocket.accept();
             //将客户端连接作为一个 Request 封装成对应的 Handler，然后提交给线程池
             this.threadPool.execute(new ClientHandler(client));
         }

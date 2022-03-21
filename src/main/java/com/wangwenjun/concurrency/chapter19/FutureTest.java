@@ -43,7 +43,7 @@ public class FutureTest {
 
 
         //有返回结果,使用回调，不需要主动调用 get() 进而造成阻塞
-        FutureService<String,Integer> futureService=FutureService.newService();
+        FutureService<String, Integer> futureService = FutureService.newService();
         futureService.submit(new Task<String, Integer>() {
             //自定义任务：计算字符串长度
             @Override
@@ -55,10 +55,10 @@ public class FutureTest {
                 }
                 return input.length();
             }
-        }, "HELLO",new resultHandler());
+        }, "HELLO", new resultHandler());
     }
 
-    static class resultHandler implements CallBack<Integer>{
+    static class resultHandler implements CallBack<Integer> {
 
         @Override
         public void call(Integer result) {

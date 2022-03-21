@@ -78,13 +78,13 @@ public class EventDispatcherExample {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //构造 Router
-        EventDispatcher dispatcher=new EventDispatcher();
+        EventDispatcher dispatcher = new EventDispatcher();
         //将 Event 和 Handler(Channel) 的绑定关系注册到 Dispatcher
-        dispatcher.registerChannel(InputEvent.class,new InputEventHandler(dispatcher));
-        dispatcher.registerChannel(ResultEvent.class,new ResultEventHandler());
-        dispatcher.dispatch(new InputEvent(1,2));
+        dispatcher.registerChannel(InputEvent.class, new InputEventHandler(dispatcher));
+        dispatcher.registerChannel(ResultEvent.class, new ResultEventHandler());
+        dispatcher.dispatch(new InputEvent(1, 2));
     }
 
 }

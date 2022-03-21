@@ -15,6 +15,7 @@ public @interface Subscribe {
 
     /**
      * 注解可指定 topic,不指定的情况下为默认的 topic(default-topic)
+     *
      * @return 主题名
      */
     String topic() default "default-topic";

@@ -14,11 +14,11 @@ public class AsyncEventBus extends EventBus {
     }
 
     public AsyncEventBus(String busName, ThreadPoolExecutor executor) {
-        this(busName,null,executor);
+        this(busName, null, executor);
     }
 
-    public AsyncEventBus(ThreadPoolExecutor executor){
-        this("default-async-bus",null,executor);
+    public AsyncEventBus(ThreadPoolExecutor executor) {
+        this("default-async-bus", null, executor);
     }
 
     public AsyncEventBus(EventExceptionHandler exceptionHandler, Executor executor) {

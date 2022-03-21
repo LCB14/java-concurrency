@@ -3,7 +3,7 @@ package com.wangwenjun.concurrency.chapter16;
 public class FlightSecurityTest {
 
     //旅客
-    static class Passengers extends Thread{
+    static class Passengers extends Thread {
 
         //机场安检
         private final FlightSecurity flightSecurity;
@@ -22,18 +22,18 @@ public class FlightSecurityTest {
 
         @Override
         public void run() {
-            while (true){
+            while (true) {
                 //旅客不断通过安检
-                flightSecurity.pass(boardingPass,idCard);
+                flightSecurity.pass(boardingPass, idCard);
 //                System.out.println(boardingPass+" : "+idCard);
             }
         }
 
-        public static void main(String[] args){
-            final FlightSecurity flightSecurity=new FlightSecurity();
-            new Passengers(flightSecurity,"AF123456","A123456").start();
-            new Passengers(flightSecurity,"BF123456","B123456").start();
-            new Passengers(flightSecurity,"CF123456","C123456").start();
+        public static void main(String[] args) {
+            final FlightSecurity flightSecurity = new FlightSecurity();
+            new Passengers(flightSecurity, "AF123456", "A123456").start();
+            new Passengers(flightSecurity, "BF123456", "B123456").start();
+            new Passengers(flightSecurity, "CF123456", "C123456").start();
         }
     }
 }

@@ -33,29 +33,29 @@ public class ShareData {
             readLock.lock();
             char[] newBuffer = new char[length];
             for (int i = 0; i < length; i++) {
-                newBuffer[i]=container.get(i);
+                newBuffer[i] = container.get(i);
             }
             slowly();
             return newBuffer;
-        }finally {
+        } finally {
             //释放锁
             readLock.unlock();
         }
     }
 
-    public void write(char c)throws InterruptedException{
+    public void write(char c) throws InterruptedException {
         try {
             writeLock.lock();
-            for(int i=0;i<length;i++){
-                container.add(i,c);
+            for (int i = 0; i < length; i++) {
+                container.add(i, c);
             }
             slowly();
-        }finally {
+        } finally {
             writeLock.unlock();
         }
     }
 
-    private void slowly(){
+    private void slowly() {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {

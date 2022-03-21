@@ -54,7 +54,7 @@ public class ProduceConsumerVersion21 {
 
     public static void main(String[] args) {
         ProduceConsumerVersion21 pc = new ProduceConsumerVersion21();
-        new Thread("t1"){
+        new Thread("t1") {
             @Override
             public void run() {
                 while (true) {
@@ -63,7 +63,7 @@ public class ProduceConsumerVersion21 {
             }
         }.start();
 
-        new Thread("t2"){
+        new Thread("t2") {
             @Override
             public void run() {
                 while (true) {

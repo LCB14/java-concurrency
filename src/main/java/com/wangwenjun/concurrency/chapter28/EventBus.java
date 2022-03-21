@@ -11,7 +11,7 @@ public class EventBus implements Bus {
     /**
      * 用于维护 Subscriber 的注册表
      */
-    private final Registry registry=new Registry();
+    private final Registry registry = new Registry();
 
     /**
      * Event Bus 的名字
@@ -21,33 +21,33 @@ public class EventBus implements Bus {
     /**
      * 默认 Bus 名字
      */
-    private static final String DEFAULT_BUS_NAME="default-bus";
+    private static final String DEFAULT_BUS_NAME = "default-bus";
 
     /**
      * 默认 topic 名字
      */
-    private static final String DEFAULT_TOPIC_NAME="default-topic";
+    private static final String DEFAULT_TOPIC_NAME = "default-topic";
 
     /**
      * 用于分发广播消息到各个 Subscriber 的类
      */
     private final Dispatcher dispatcher;
 
-    public EventBus(){
-        this(DEFAULT_BUS_NAME,null,Dispatcher.SEQ_EXECUTOR_SERVICE);
+    public EventBus() {
+        this(DEFAULT_BUS_NAME, null, Dispatcher.SEQ_EXECUTOR_SERVICE);
     }
 
-    public EventBus(String busName){
-        this(busName,null,Dispatcher.SEQ_EXECUTOR_SERVICE);
+    public EventBus(String busName) {
+        this(busName, null, Dispatcher.SEQ_EXECUTOR_SERVICE);
     }
 
-    EventBus(String busName, EventExceptionHandler exceptionHandler, Executor executor){
-        this.busName=busName;
-        this.dispatcher=Dispatcher.newDispatcher(exceptionHandler,executor);
+    EventBus(String busName, EventExceptionHandler exceptionHandler, Executor executor) {
+        this.busName = busName;
+        this.dispatcher = Dispatcher.newDispatcher(exceptionHandler, executor);
     }
 
-    public EventBus(EventExceptionHandler exceptionHandler){
-        this(DEFAULT_BUS_NAME,exceptionHandler,Dispatcher.SEQ_EXECUTOR_SERVICE);
+    public EventBus(EventExceptionHandler exceptionHandler) {
+        this(DEFAULT_BUS_NAME, exceptionHandler, Dispatcher.SEQ_EXECUTOR_SERVICE);
     }
 
     //将注册 Subscriber 动作直接委托给 Registry
@@ -65,12 +65,12 @@ public class EventBus implements Bus {
     //提交 Event 到默认的 topic
     @Override
     public void post(Object event) {
-        this.post(event,DEFAULT_TOPIC_NAME);
+        this.post(event, DEFAULT_TOPIC_NAME);
     }
 
     @Override
     public void post(Object event, String topic) {
-        this.dispatcher.dispatch(this,registry,event,topic);
+        this.dispatcher.dispatch(this, registry, event, topic);
     }
 
     @Override

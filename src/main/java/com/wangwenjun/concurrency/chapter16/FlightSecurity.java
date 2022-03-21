@@ -13,7 +13,7 @@ public class FlightSecurity {
     //身份证
     private String idCard = "null";
 
-    public  void pass(String boardingPass, String idCard) {
+    public void pass(String boardingPass, String idCard) {
         this.boardingPass = boardingPass;
         this.idCard = idCard;
         this.count++;

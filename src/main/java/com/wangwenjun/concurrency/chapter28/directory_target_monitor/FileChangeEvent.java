@@ -14,8 +14,8 @@ public class FileChangeEvent {
     private final WatchEvent.Kind<?> kind;
 
     public FileChangeEvent(Path path, WatchEvent.Kind<?> kind) {
-        this.path=path;
-        this.kind=kind;
+        this.path = path;
+        this.kind = kind;
     }
 
     public WatchEvent.Kind<?> getKind() {

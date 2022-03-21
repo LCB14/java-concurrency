@@ -20,9 +20,9 @@ public class TaskHandler implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(currentThread()+" Begin handle "+ request);
+        System.out.println(currentThread() + " Begin handle " + request);
         slowly();
-        System.out.println(currentThread()+" End handle "+ request);
+        System.out.println(currentThread() + " End handle " + request);
     }
 
     private void slowly() {

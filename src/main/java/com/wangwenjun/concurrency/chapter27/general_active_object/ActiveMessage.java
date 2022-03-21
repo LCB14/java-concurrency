@@ -56,7 +56,7 @@ class ActiveMessage {
     }
 
     //Builder 主要负责对 ActiveMessage 的构建，是一种典型的 Gof Builder 设计模式
-    static class Builder{
+    static class Builder {
 
         private Object[] objects;
 
@@ -66,27 +66,27 @@ class ActiveMessage {
 
         private Object service;
 
-        public Builder useMethod(Method method){
-            this.method=method;
+        public Builder useMethod(Method method) {
+            this.method = method;
             return this;
         }
 
-        public Builder returnFuture(ActiveFuture<Object> future){
-            this.future=future;
+        public Builder returnFuture(ActiveFuture<Object> future) {
+            this.future = future;
             return this;
         }
 
-        public Builder withObject(Object[] objects){
-            this.objects=objects;
+        public Builder withObject(Object[] objects) {
+            this.objects = objects;
             return this;
         }
 
-        public Builder forService(Object service){
-            this.service=service;
+        public Builder forService(Object service) {
+            this.service = service;
             return this;
         }
 
-        public ActiveMessage build(){
+        public ActiveMessage build() {
             return new ActiveMessage(this);
         }
 

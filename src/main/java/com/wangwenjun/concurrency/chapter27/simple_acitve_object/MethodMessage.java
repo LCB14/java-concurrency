@@ -10,7 +10,7 @@ import java.util.Map;
 public abstract class MethodMessage {
 
     //用于收集方法参数，如果又返回 Future 类型则一并收集
-    protected final Map<String,Object> params;
+    protected final Map<String, Object> params;
 
     protected final OrderService orderService;
 

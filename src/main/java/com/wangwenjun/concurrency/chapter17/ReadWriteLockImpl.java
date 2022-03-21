@@ -9,11 +9,11 @@ class ReadWriteLockImpl implements ReadWriteLock {
     //定义对象锁
     private final Object MUTEX = new Object();
 
-    private int waitingWriters=0;
+    private int waitingWriters = 0;
 
-    private int writingWriters=0;
+    private int writingWriters = 0;
 
-    private int readingReaders=0;
+    private int readingReaders = 0;
 
     //read和write的偏好设置
     private boolean preferWriter;
@@ -54,48 +54,48 @@ class ReadWriteLockImpl implements ReadWriteLock {
     }
 
     //使写线程的数量增加
-    void incrementWritingWriters(){
+    void incrementWritingWriters() {
         this.writingWriters++;
     }
 
     //使等待写入线程的数量增加
-    void incrementWaitingWriters(){
+    void incrementWaitingWriters() {
         this.waitingWriters++;
     }
 
     //使读线程的数量增加
-    void incrementReadingReaders(){
+    void incrementReadingReaders() {
         this.readingReaders++;
     }
 
     //使写线程的数量减少
-    void decrementWritingWriters(){
+    void decrementWritingWriters() {
         this.writingWriters--;
     }
 
     //使等待写入的线程的数量减少
-    void decrementWaitingWriters(){
+    void decrementWaitingWriters() {
         this.waitingWriters--;
     }
 
     //使等待写入的线程的数量减少
-    void decrementReadingReaders(){
+    void decrementReadingReaders() {
         this.readingReaders--;
     }
 
     //获取对象锁
-    Object getMUTEX(){
+    Object getMUTEX() {
         return this.MUTEX;
     }
 
     //是否当前偏好于写锁
-    boolean getPreferWriter(){
+    boolean getPreferWriter() {
         return this.preferWriter;
     }
 
     //设置偏好
-    void changePreferWriter(boolean preferWriter){
-        this.preferWriter=preferWriter;
+    void changePreferWriter(boolean preferWriter) {
+        this.preferWriter = preferWriter;
     }
 
 }

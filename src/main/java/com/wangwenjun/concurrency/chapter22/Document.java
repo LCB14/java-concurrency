@@ -64,7 +64,7 @@ public class Document {
                 fileWriter.write("\r\n");
             }
             fileWriter.flush();
-            changed=false;
+            changed = false;
             content.clear();
         }
     }

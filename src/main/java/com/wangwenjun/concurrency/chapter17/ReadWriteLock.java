@@ -22,12 +22,12 @@ public interface ReadWriteLock {
     int getReadingReaders();
 
     //工厂方法，创建ReadWriteLock
-    static ReadWriteLock readWriteLock(){
+    static ReadWriteLock readWriteLock() {
         return new ReadWriteLockImpl();
     }
 
     //工厂方法，创建ReadWriteLock,并且传入 preferWriter
-    static ReadWriteLock readWriteLock(boolean preferWriter){
+    static ReadWriteLock readWriteLock(boolean preferWriter) {
         return new ReadWriteLockImpl(preferWriter);
     }
 

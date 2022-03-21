@@ -5,7 +5,7 @@ package com.wangwenjun.concurrency.chapter22;
  */
 public class BalkingTest {
 
-    public static void main(String[] args){
-        new DocumentEditThread("D:\\studyProject\\java-concurrency\\src\\chapter22","document.txt").start();
+    public static void main(String[] args) {
+        new DocumentEditThread("D:\\studyProject\\java-concurrency\\src\\chapter22", "document.txt").start();
     }
 }

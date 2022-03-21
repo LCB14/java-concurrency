@@ -17,7 +17,7 @@ class ReadLock implements Lock {
         synchronized (readWriteLock.getMUTEX()) {
             //若此时有线程正在进行写操作，或者有写线程正在等待并且偏好于写，就挂起读锁
             while (readWriteLock.getWritingWriters() > 0 ||
-                    (readWriteLock.getWaitingWriters() > 0 && readWriteLock.getPreferWriter())){
+                    (readWriteLock.getWaitingWriters() > 0 && readWriteLock.getPreferWriter())) {
                 readWriteLock.getMUTEX().wait();
             }
             //成功获得锁，并增加 readingReaders 的数量
@@ -28,7 +28,7 @@ class ReadLock implements Lock {
     @Override
     public void unlock() {
         //使用MUTEX作为锁
-        synchronized (readWriteLock.getMUTEX()){
+        synchronized (readWriteLock.getMUTEX()) {
             //释放锁的过程就是减少 readingReader 的数量
             //将 preferWriter 设置为 true，可以使 writer 线程获得更多的机会
             //唤醒与 MUTEX关联的 monitor waitSet中的线程

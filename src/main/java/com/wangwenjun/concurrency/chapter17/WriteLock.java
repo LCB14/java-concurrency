@@ -23,7 +23,7 @@ class WriteLock implements Lock {
                 while (readWriteLock.getReadingReaders() > 0 || readWriteLock.getWritingWriters() > 0) {
                     readWriteLock.getMUTEX().wait();
                 }
-            }finally {
+            } finally {
                 //成功获取到写入锁，减少等待获取写入锁的线程数量
                 this.readWriteLock.decrementWaitingWriters();
             }
@@ -34,7 +34,7 @@ class WriteLock implements Lock {
 
     @Override
     public void unlock() {
-        synchronized (readWriteLock.getMUTEX()){
+        synchronized (readWriteLock.getMUTEX()) {
             //减少正在写入的线程数量
             readWriteLock.decrementWritingWriters();
             //将偏好设置为false，可以使得读锁被最快速的获得

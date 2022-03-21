@@ -23,7 +23,7 @@ public class ExitCapture {
         }));
 
         int i = 0;
-        while(true) {
+        while (true) {
             try {
                 Thread.sleep(1_000);
                 System.out.println("I am working...");

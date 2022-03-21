@@ -24,7 +24,7 @@ class SocketCleaningTracker {
 
     private static class Cleaner extends Thread {
 
-        private Cleaner(){
+        private Cleaner() {
             super("SocketCleaningTracker");
             //清理动作一般是系统的清理工作，用于防止 JVM 无法正常关闭，
             setDaemon(true);
@@ -32,9 +32,9 @@ class SocketCleaningTracker {
 
         @Override
         public void run() {
-            for (;;){
+            for (; ; ) {
                 try {
-                    Tracker tracker= (Tracker) QUEUE.remove();
+                    Tracker tracker = (Tracker) QUEUE.remove();
                     tracker.close();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -46,16 +46,16 @@ class SocketCleaningTracker {
     /**
      * Tracker 是 PhantomReference 的子类
      */
-    private static class Tracker extends PhantomReference<Object>{
+    private static class Tracker extends PhantomReference<Object> {
 
         private final Socket socket;
 
-        Tracker(Socket socket,ReferenceQueue<? super Object> queue){
-            super(socket,queue);
-            this.socket=socket;
+        Tracker(Socket socket, ReferenceQueue<? super Object> queue) {
+            super(socket, queue);
+            this.socket = socket;
         }
 
-        private void close(){
+        private void close() {
             try {
                 socket.close();
             } catch (IOException e) {

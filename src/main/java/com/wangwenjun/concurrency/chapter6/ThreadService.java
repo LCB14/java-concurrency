@@ -17,13 +17,12 @@ public class ThreadService {
             public void run() {
                 Thread runner = new Thread(task);
                 runner.setDaemon(true);
-
                 runner.start();
                 try {
                     runner.join();
                     finished = true;
                 } catch (InterruptedException e) {
-                    //e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         };

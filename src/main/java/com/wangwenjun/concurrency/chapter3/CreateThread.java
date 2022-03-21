@@ -23,14 +23,12 @@ public class CreateThread {
         Thread t4 = new Thread(() -> {
             System.out.println("Runnable...");
         });
-
         System.out.println(t3.getName());
         System.out.println(t4.getName());
 
         Thread t5 = new Thread(() -> {
             System.out.println("Runnable..." + Thread.currentThread().getName());
         }, "RunnableThread");
-
         t5.start();
     }
 }

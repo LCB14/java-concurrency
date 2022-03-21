@@ -14,9 +14,9 @@ public class OrderMessage extends MethodMessage {
     @Override
     public void execute() {
         //获取参数
-        String account= (String) params.get("account");
-        long orderId= (long) params.get("orderId");
+        String account = (String) params.get("account");
+        long orderId = (long) params.get("orderId");
         //执行真正的 order 方法
-        orderService.order(account,orderId);
+        orderService.order(account, orderId);
     }
 }

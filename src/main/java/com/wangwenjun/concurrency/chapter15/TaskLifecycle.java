@@ -12,17 +12,18 @@ public interface TaskLifecycle<T> {
     void onRunning(Thread thread);
 
     //任务结束时触发，并返回任务执行结束后的结果，允许null
-    void onFinish(Thread thread,T result);
+    void onFinish(Thread thread, T result);
 
     //任务执行报错时触发
-    void onError(Thread thread,Exception e);
+    void onError(Thread thread, Exception e);
 
 
     /**
      * 生命周期接口的空实现（Adapter），主要是为了使用这保持对Thread类的使用习惯
+     *
      * @param <T>
      */
-    class EmptyLifeCycle<T> implements TaskLifecycle<T>{
+    class EmptyLifeCycle<T> implements TaskLifecycle<T> {
 
         @Override
         public void onStart(Thread thread) {

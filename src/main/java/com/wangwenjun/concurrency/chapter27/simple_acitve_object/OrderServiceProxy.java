@@ -23,12 +23,12 @@ public class OrderServiceProxy implements OrderService {
     @Override
     public Future<String> findOrderDetails(long orderId) {
         //定义一个ActiveFuture ，并且可支持立即返回
-        final ActiveFuture<String> activeFuture=new ActiveFuture<>();
+        final ActiveFuture<String> activeFuture = new ActiveFuture<>();
         //收集方法入参以及返回的 ActiveFuture 封装成 MethodMessage
-        Map<String,Object> params=new HashMap<>();
-        params.put("orderId",orderId);
-        params.put("activeFuture",activeFuture);
-        MethodMessage message=new FindOrderDetailsMessage(params,orderService);
+        Map<String, Object> params = new HashMap<>();
+        params.put("orderId", orderId);
+        params.put("activeFuture", activeFuture);
+        MethodMessage message = new FindOrderDetailsMessage(params, orderService);
         //将 MethodMessage 保存至 activeMessageQueue 中
         activeMessageQueue.offer(message);
         return activeFuture;
@@ -37,10 +37,10 @@ public class OrderServiceProxy implements OrderService {
     @Override
     public void order(String account, long orderId) {
         //收集方法入参并 封装成 MethodMessage，然后 offer 至队列中
-        Map<String,Object> params=new HashMap<>();
-        params.put("account",account);
-        params.put("orderId",orderId);
-        MethodMessage message=new OrderMessage(params,orderService);
+        Map<String, Object> params = new HashMap<>();
+        params.put("account", account);
+        params.put("orderId", orderId);
+        MethodMessage message = new OrderMessage(params, orderService);
         activeMessageQueue.offer(message);
     }
 }

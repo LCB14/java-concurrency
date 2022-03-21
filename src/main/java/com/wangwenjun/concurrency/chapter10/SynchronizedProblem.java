@@ -26,7 +26,9 @@ public class SynchronizedProblem {
             }
         };
         t2.start();
+
         Thread.sleep(2000);
+
         t2.interrupt();
         System.out.println(t2.isInterrupted());
     }

@@ -3,7 +3,7 @@ package com.wangwenjun.concurrency.chapter28;
 import java.lang.reflect.Method;
 
 /**
- *Subscriber 类封装了对象实例和被 @Subscribe 标记的方法，也就是说一个对象实例有可能会被封装成若干个 Subscriber
+ * Subscriber 类封装了对象实例和被 @Subscribe 标记的方法，也就是说一个对象实例有可能会被封装成若干个 Subscriber
  */
 public class Subscriber {
 
@@ -11,7 +11,7 @@ public class Subscriber {
 
     private final Method subscriberMethod;
 
-    private boolean disable=false;
+    private boolean disable = false;
 
     public Subscriber(Object subscriberObject, Method subscriberMethod) {
         this.subscriberObject = subscriberObject;
@@ -26,12 +26,12 @@ public class Subscriber {
         return subscriberObject;
     }
 
-    public boolean isDisable(){
+    public boolean isDisable() {
         return disable;
     }
 
-    public void setDisable(boolean disable){
-        this.disable=disable;
+    public void setDisable(boolean disable) {
+        this.disable = disable;
     }
 
 }

@@ -10,14 +10,14 @@ public class AutoSaveThread extends Thread {
 
     private final Document document;
 
-    public AutoSaveThread(Document document){
+    public AutoSaveThread(Document document) {
         super("DocumentAutoSaveThread");
-        this.document=document;
+        this.document = document;
     }
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
                 //每隔一秒保存一次文档
                 document.save();

@@ -21,7 +21,7 @@ public class FutureTask<T> implements Future<T> {
     public T get() throws InterruptedException {
         synchronized (LOCK) {
             //当任务还未完成时，调用 get() 会被挂起
-            while (!isDone){
+            while (!isDone) {
                 LOCK.wait();
             }
             //返回最终的计算结果

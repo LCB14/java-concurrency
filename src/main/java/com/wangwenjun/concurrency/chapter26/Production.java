@@ -14,12 +14,12 @@ public class Production extends InstructionBook {
 
     @Override
     protected void firstProcess() {
-        System.out.println("execute the "+prodID+" first process");
+        System.out.println("execute the " + prodID + " first process");
     }
 
     @Override
     protected void secondProcess() {
-        System.out.println("execute the "+prodID+" second process");
+        System.out.println("execute the " + prodID + " second process");
     }
 
     @Override

@@ -62,6 +62,7 @@ public class ThreadJoin2 {
             }
         });
         t1.start();
+
         Thread t2 = new Thread(() -> {
             try {
                 Thread.sleep(10000);

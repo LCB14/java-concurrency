@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 程序员们旅行
  */
-public class ProgrammerTravel extends Thread{
+public class ProgrammerTravel extends Thread {
 
     //门阀
     private final Latch latch;
@@ -28,13 +28,13 @@ public class ProgrammerTravel extends Thread{
     public void run() {
         try {
             //乘坐交通工具所花费的时间
-            long time=ThreadLocalRandom.current().nextInt(10);
-            System.out.println(programer+" start take the transportation "+transportation+" maybe spent "+time+" ms.");
+            long time = ThreadLocalRandom.current().nextInt(10);
+            System.out.println(programer + " start take the transportation " + transportation + " maybe spent " + time + " ms.");
             TimeUnit.SECONDS.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(programer+" arrived by "+transportation);
+        System.out.println(programer + " arrived by " + transportation);
         latch.countDown();
     }
 }

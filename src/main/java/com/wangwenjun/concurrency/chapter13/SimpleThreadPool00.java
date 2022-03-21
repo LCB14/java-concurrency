@@ -34,7 +34,7 @@ public class SimpleThreadPool00 extends Thread {
     public final DiscardPolicy discardPolicy;
 
     public final static DiscardPolicy DEFAULT_DISCARD_POLICY = () -> {
-      throw new DiscardException("Discard this task");
+        throw new DiscardException("Discard this task");
     };
 
     public static boolean destroy = false;
@@ -91,7 +91,7 @@ public class SimpleThreadPool00 extends Thread {
                     task.interrupt();
                     task.close();
                     initVal--;
-                }else {
+                } else {
                     Thread.sleep(10);
                 }
             }

@@ -12,23 +12,23 @@ import java.util.concurrent.TimeUnit;
 public class OrderServiceImpl implements OrderService {
     @Override
     public Future<String> findOrderDetails(long orderId) {
-        return FutureService.<Long,String>newService().submit(input -> {
+        return FutureService.<Long, String>newService().submit(input -> {
             try {
                 //模拟耗时
                 TimeUnit.SECONDS.sleep(2);
-                System.out.println("process the orderID->"+orderId);
+                System.out.println("process the orderID->" + orderId);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             return "the order details information.";
-        },orderId,null);
+        }, orderId, null);
     }
 
     @Override
     public void order(String account, long orderId) {
         try {
             TimeUnit.SECONDS.sleep(10);
-            System.out.println("process the order account "+account+",orderID "+orderId);
+            System.out.println("process the order account " + account + ",orderID " + orderId);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

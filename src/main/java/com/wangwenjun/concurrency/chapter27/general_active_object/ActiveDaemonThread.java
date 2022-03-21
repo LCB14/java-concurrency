@@ -1,7 +1,7 @@
 package com.wangwenjun.concurrency.chapter27.general_active_object;
 
 
-class ActiveDaemonThread extends Thread{
+class ActiveDaemonThread extends Thread {
 
     private final ActiveMessageQueue queue;
 
@@ -14,9 +14,9 @@ class ActiveDaemonThread extends Thread{
 
     @Override
     public void run() {
-        for (;;){
+        for (; ; ) {
             //从 MethodMessage 队列中获取一个 MethodMessage，然后执行 execute 方法
-            ActiveMessage activeMessage=this.queue.take();
+            ActiveMessage activeMessage = this.queue.take();
             activeMessage.execute();
         }
     }

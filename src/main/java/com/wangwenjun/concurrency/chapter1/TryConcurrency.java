@@ -6,24 +6,22 @@ package com.wangwenjun.concurrency.chapter1;
  * QQ交流群:286081824
  ***************************************/
 public class TryConcurrency {
-
     public static void main(String[] args) {
-        Thread t=new Thread("READ-Thread"){
+        Thread t = new Thread("READ-Thread") {
             @Override
             public void run() {
                 println(Thread.currentThread().getName());//main
                 readFromDataBase();
             }
         };
-
         t.start();
 
-/*        new Thread("WRITE-Thread"){
+        new Thread("WRITE-Thread") {
             @Override
             public void run() {
                 writeDataToFile();
             }
-        }.start();*/
+        }.start();
     }
 
     private static void readFromDataBase() {

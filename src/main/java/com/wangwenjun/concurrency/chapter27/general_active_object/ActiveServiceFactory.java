@@ -1,7 +1,6 @@
 package com.wangwenjun.concurrency.chapter27.general_active_object;
 
 
-
 import com.wangwenjun.concurrency.chapter19.Future;
 
 import java.lang.reflect.InvocationHandler;
@@ -64,7 +63,7 @@ public class ActiveServiceFactory {
         private void checkMethod(Method method) throws IllegalActiveMethodException {
             //有返回值，必须是 ActiveMFuture 类型的返回值
             if (!isReturnVoidType(method) && !isReturnFutureType(method)) {
-                throw new IllegalActiveMethodException("the method [ "+method.getName()+" ] return type must be void/Future");
+                throw new IllegalActiveMethodException("the method [ " + method.getName() + " ] return type must be void/Future");
             }
         }
 
@@ -77,7 +76,6 @@ public class ActiveServiceFactory {
         private boolean isReturnVoidType(Method method) {
             return method.getReturnType().equals(Void.TYPE);
         }
-
 
 
     }
