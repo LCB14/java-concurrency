@@ -4,48 +4,43 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-/**
- * Balking设计模式
- * 数据文件
- *
- * @author tuyrk
- */
+/***************************************
+ * @author:Alex Wang
+ * @Date:2017/3/24 QQ:532500648
+ * QQ交流群:286081824
+ ***************************************/
 public class BalkingData {
-    private final String filename;
-    private String context;
+    private final String fileName;
+
+    private String content;
+
     private boolean changed;
 
-    public BalkingData(String filename, String context) {
-        this.filename = filename;
-        this.context = context;
+    public BalkingData(String fileName, String content) {
+        this.fileName = fileName;
+        this.content = content;
         this.changed = true;
     }
 
-    /**
-     * 用户变化
-     */
-    public synchronized void change(String newContext) {
-        this.context = newContext;
+    public synchronized void change(String newContent) {
+        this.content = newContent;
         this.changed = true;
     }
 
-    /**
-     * 服务保存
-     */
     public synchronized void save() throws IOException {
         if (!changed) {
             return;
         }
+
         doSave();
         this.changed = false;
     }
 
     private void doSave() throws IOException {
-        System.out.println(Thread.currentThread().getName() + " calls do save, content=" + context);
-        String newLine = System.getProperty("line.separator");
-        try (Writer writer = new FileWriter(filename, true)) {
-            writer.write(context);
-            writer.write(newLine);
+        System.out.println(Thread.currentThread().getName() + " calls do save,content=" + content);
+        try (Writer writer = new FileWriter(fileName, true)) {
+            writer.write(content);
+            writer.write("\n");
             writer.flush();
         }
     }

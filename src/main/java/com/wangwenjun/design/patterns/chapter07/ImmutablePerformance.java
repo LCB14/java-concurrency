@@ -21,6 +21,7 @@ public class ImmutablePerformance {
         }
         endTimestamp = System.currentTimeMillis();
         System.out.println("Elapsed time " + (endTimestamp - startTimestamp));// 242
+
         // 2. 不可变对象
         startTimestamp = System.currentTimeMillis();
         ImmutableObj immutableObj = new ImmutableObj("Alex");
@@ -51,6 +52,7 @@ public class ImmutablePerformance {
         t2.join();
         endTimestamp = System.currentTimeMillis();
         System.out.println("Elapsed time " + (endTimestamp - startTimestamp));// 1005
+
         // 2. 不可变对象
         ImmutableObj immutableObj2 = new ImmutableObj("Alex");
         startTimestamp = System.currentTimeMillis();
