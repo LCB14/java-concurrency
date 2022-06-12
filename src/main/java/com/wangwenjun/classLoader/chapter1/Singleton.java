@@ -35,19 +35,19 @@ public class Singleton {
 
     /**
      * <p>
-     *      类 -- 链接阶段
-     *      1.instance = null;
-     *      2.x = 0;
-     *      3.y = 0;
+     * 类 -- 链接阶段
+     * 1.instance = null;
+     * 2.x = 0;
+     * 3.y = 0;
      * <p>
      * <p>
-     *     类 -- 初始化阶段
-     *     instance = new Singleton();
-     *     x++=>x=1
-     *     y++=>y=1
-     *
-     *     x = 0;
-     *     y = 1;
+     * 类 -- 初始化阶段
+     * instance = new Singleton();
+     * x++=>x=1
+     * y++=>y=1
+     * <p>
+     * x = 0;
+     * y = 1;
      * </p>
      */
 
